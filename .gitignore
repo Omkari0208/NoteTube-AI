@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+backend/venv/
+backend/.venv/
+venv/
+.venv/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Node
+frontend/node_modules/
+
+# Frontend build
+frontend/dist/
+frontend/build/
+
+# Vercel
+.vercel/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
