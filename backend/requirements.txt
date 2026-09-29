@@ -5,3 +5,4 @@ groq
 youtube-transcript-api
 sqlalchemy
 pydantic
+psycopg[binary]
