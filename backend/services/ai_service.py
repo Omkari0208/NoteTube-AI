@@ -1,38 +1,18 @@
 import json
-from pathlib import Path
+import os
 
 from groq import Groq
 
 
 # ============================================================
-# LOAD GROQ API KEY FROM .env
+# LOAD GROQ API KEY
 # ============================================================
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_FILE = BASE_DIR / ".env"
-
-GROQ_API_KEY = None
-
-try:
-    with open(ENV_FILE, "r", encoding="utf-8-sig") as f:
-        for line in f:
-            line = line.strip()
-
-            if line.startswith("GROQ_API_KEY="):
-                GROQ_API_KEY = line.split("=", 1)[1].strip()
-                GROQ_API_KEY = GROQ_API_KEY.strip('"').strip("'")
-                break
-
-except Exception as e:
-    raise ValueError(
-        f"Could not read .env file: {ENV_FILE}\n"
-        f"Error: {str(e)}"
-    )
-
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 if not GROQ_API_KEY:
     raise ValueError(
-        f"GROQ_API_KEY is missing in: {ENV_FILE}"
+        "GROQ_API_KEY environment variable is missing."
     )
 
 
@@ -319,7 +299,7 @@ VIDEO TRANSCRIPT:
                 "notes": {},
                 "error": (
                     "Groq API key is invalid or missing. "
-                    "Check your .env file."
+                    "Check your GROQ_API_KEY environment variable."
                 ),
                 "error_type": "AUTHENTICATION_ERROR"
             }
@@ -348,8 +328,10 @@ VIDEO TRANSCRIPT:
 
         if (
             "404" in error_lower
-            or "model" in error_lower
-            and "not found" in error_lower
+            or (
+                "model" in error_lower
+                and "not found" in error_lower
+            )
         ):
             return {
                 "success": False,
