@@ -6,3 +6,4 @@ youtube-transcript-api
 sqlalchemy
 pydantic
 psycopg[binary]
+passlib[bcrypt]
