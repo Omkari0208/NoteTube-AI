@@ -1,26 +1,19 @@
 import json
 import os
-
+from dotenv import load_dotenv
 from groq import Groq
 
+load_dotenv()
 
 # ============================================================
-# LOAD GROQ API KEY
+# GROQ CLIENT HELPER
 # ============================================================
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-if not GROQ_API_KEY:
-    raise ValueError(
-        "GROQ_API_KEY environment variable is missing."
-    )
-
-
-# ============================================================
-# CREATE GROQ CLIENT
-# ============================================================
-
-client = Groq(api_key=GROQ_API_KEY)
+def get_groq_client():
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        return None
+    return Groq(api_key=api_key)
 
 
 # ============================================================
@@ -35,6 +28,15 @@ def generate_notes(transcript: str):
             "notes": {},
             "error": "Transcript is empty",
             "error_type": "EMPTY_TRANSCRIPT"
+        }
+
+    client = get_groq_client()
+    if not client:
+        return {
+            "success": False,
+            "notes": {},
+            "error": "GROQ_API_KEY environment variable is missing. Check your backend configuration.",
+            "error_type": "AUTHENTICATION_ERROR"
         }
 
     prompt = f"""
@@ -149,7 +151,7 @@ IMPORTANT RULES:
 
 VIDEO TRANSCRIPT:
 
-{transcript}
+{transcript[:15000]}
 """
 
     try:
@@ -173,15 +175,17 @@ VIDEO TRANSCRIPT:
                     "content": prompt
                 }
             ],
+            response_format={"type": "json_object"},
             temperature=0.2,
-            max_tokens=12000
+            max_tokens=8000
         )
 
         # ====================================================
         # GET AI RESPONSE
         # ====================================================
 
-        text = response.choices[0].message.content.strip()
+        raw_text = response.choices[0].message.content or ""
+        text = raw_text.strip()
 
         # Remove Markdown code fences if AI adds them
         if text.startswith("```json"):
@@ -194,6 +198,13 @@ VIDEO TRANSCRIPT:
             text = text[:-3]
 
         text = text.strip()
+
+        # Fallback extraction between outer braces
+        if not (text.startswith("{") and text.endswith("}")):
+            start_idx = text.find("{")
+            end_idx = text.rfind("}")
+            if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+                text = text[start_idx:end_idx + 1]
 
         # ====================================================
         # CONVERT RESPONSE TO JSON
