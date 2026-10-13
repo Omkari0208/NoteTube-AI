@@ -152,15 +152,16 @@ Give important points for quick revision.
 
 IMPORTANT RULES:
 
-- Use only information supported by the transcript.
-- Do not invent unrelated information.
-- Make the content useful for college students.
-- Use simple and clear English.
-- Return ONLY JSON.
+- If a full transcript is provided, base the study material faithfully on the video content.
+- If only a video topic/title/description is available (due to missing transcript or captions), generate FULL, rich, in-depth academic study material comprehensively explaining the topic from educational computer science / domain fundamentals.
+- Do NOT return empty fields, placeholder errors, or refusal messages. Every single key in the JSON must be fully populated with valuable educational content for college students.
+- Make the content useful, clear, and structured for exam preparation.
+- Use simple, professional English.
+- Return ONLY valid JSON.
 - Do NOT use Markdown code fences.
 - Do NOT add explanations outside the JSON.
 
-VIDEO TRANSCRIPT / CONTENT:
+VIDEO TRANSCRIPT / TOPIC CONTENT:
 
 {content_source[:15000]}
 """
