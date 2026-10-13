@@ -105,41 +105,38 @@ def generate_video_notes(request: VideoRequest):
             }
 
         # ---------------------------------------------------------
-        # STEP 2: Get transcript
+        # STEP 2: Get transcript (with fallback to video details)
         # ---------------------------------------------------------
 
         transcript_data = get_transcript(
             video_info["video_id"]
         )
 
-        if not transcript_data["success"]:
+        cleaned_transcript = ""
+        if transcript_data.get("success"):
+            cleaned_transcript = clean_transcript(
+                transcript_data["transcript"]
+            )
+
+        video_title = video_info.get("title", "")
+        video_description = video_info.get("description", "")
+
+        # If transcript failed and there is neither title nor description
+        if not cleaned_transcript and not video_description and not video_title:
             return {
                 "success": False,
-                "message": "Transcript could not be retrieved",
-                "error": transcript_data.get("error")
+                "message": "Transcript could not be retrieved and no video details were found.",
+                "error": transcript_data.get("error", "No transcript available")
             }
 
         # ---------------------------------------------------------
-        # STEP 3: Clean transcript
-        # ---------------------------------------------------------
-
-        cleaned_transcript = clean_transcript(
-            transcript_data["transcript"]
-        )
-
-        if not cleaned_transcript:
-            return {
-                "success": False,
-                "message": "Transcript is empty after cleaning",
-                "error": "No usable transcript text was found."
-            }
-
-        # ---------------------------------------------------------
-        # STEP 4: Generate AI study material
+        # STEP 3: Generate AI study material
         # ---------------------------------------------------------
 
         notes = generate_notes(
-            cleaned_transcript
+            cleaned_transcript,
+            video_title=video_title,
+            video_description=video_description
         )
 
         if not notes["success"]:

@@ -20,13 +20,23 @@ def get_groq_client():
 # GENERATE STUDY MATERIAL
 # ============================================================
 
-def generate_notes(transcript: str):
+def generate_notes(transcript: str, video_title: str = "", video_description: str = ""):
 
-    if not transcript or not transcript.strip():
+    content_source = (transcript or "").strip()
+    if not content_source:
+        # Fallback to video title and description if transcript is unavailable
+        meta_parts = []
+        if video_title:
+            meta_parts.append(f"Title: {video_title}")
+        if video_description:
+            meta_parts.append(f"Description:\n{video_description}")
+        content_source = "\n\n".join(meta_parts).strip()
+
+    if not content_source:
         return {
             "success": False,
             "notes": {},
-            "error": "Transcript is empty",
+            "error": "No transcript or video content is available to generate notes.",
             "error_type": "EMPTY_TRANSCRIPT"
         }
 
@@ -42,7 +52,8 @@ def generate_notes(transcript: str):
     prompt = f"""
 You are an expert academic study-material generator.
 
-Analyze the following YouTube video transcript and create
+Analyze the following YouTube video content / transcript and create
+COMPLETE, accurate, student-friendly study material.
 COMPLETE, accurate, student-friendly study material.
 
 Do NOT create only a short summary.
@@ -149,9 +160,9 @@ IMPORTANT RULES:
 - Do NOT use Markdown code fences.
 - Do NOT add explanations outside the JSON.
 
-VIDEO TRANSCRIPT:
+VIDEO TRANSCRIPT / CONTENT:
 
-{transcript[:15000]}
+{content_source[:15000]}
 """
 
     try:
