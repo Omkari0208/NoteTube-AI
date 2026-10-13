@@ -233,41 +233,28 @@ VIDEO TRANSCRIPT / CONTENT:
             }
 
         # ====================================================
-        # CHECK REQUIRED KEYS
+        # POPULATE DEFAULTS FOR MISSING KEYS
         # ====================================================
 
-        required_keys = [
-            "title",
-            "overview",
-            "detailed_content",
-            "key_concepts",
-            "definitions",
-            "examples",
-            "important_points",
-            "vsaq",
-            "saq",
-            "laq",
-            "mcq",
-            "fill_in_the_blanks",
-            "quick_revision"
-        ]
+        defaults = {
+            "title": video_title or "Study Material",
+            "overview": "",
+            "detailed_content": "",
+            "key_concepts": [],
+            "definitions": [],
+            "examples": [],
+            "important_points": [],
+            "vsaq": [],
+            "saq": [],
+            "laq": [],
+            "mcq": [],
+            "fill_in_the_blanks": [],
+            "quick_revision": []
+        }
 
-        missing_keys = [
-            key
-            for key in required_keys
-            if key not in data
-        ]
-
-        if missing_keys:
-            return {
-                "success": False,
-                "notes": {},
-                "error": (
-                    "AI response is missing keys: "
-                    + ", ".join(missing_keys)
-                ),
-                "error_type": "MISSING_KEYS"
-            }
+        for k, v in defaults.items():
+            if k not in data or data[k] is None:
+                data[k] = v
 
         # ====================================================
         # SUCCESS

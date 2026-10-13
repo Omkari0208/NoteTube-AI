@@ -275,10 +275,14 @@ function App() {
       if (token) { 
         loadHistory(); 
       } 
+      setTimeout(() => {
+        const el = document.getElementById("study-section");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     } catch (error) { 
       console.error("Error:", error); 
       alert( 
-        "Could not connect to the NoteTube AI backend.\n\nMake sure FastAPI is running on port 8000." 
+        "Could not connect to the NoteTube AI backend.\n\nPlease check your internet connection or verify the backend is online." 
       ); 
     } finally { 
       setLoading(false); 
@@ -909,7 +913,7 @@ function App() {
             STUDY MATERIAL 
         ================================================= */} 
         {studyMaterial && !showHistory && ( 
-          <section className="study-section"> 
+          <section className="study-section" id="study-section"> 
             <div className="section-heading"> 
               <p className="small-title"> 
                 YOUR STUDY MATERIAL 
