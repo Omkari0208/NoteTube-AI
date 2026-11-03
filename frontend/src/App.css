@@ -1,0 +1,1106 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background: #fffaf0;
+  color: #222;
+
+  line-height: 1.7;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+.app {
+  min-height: 100vh;
+  background: #fffaf0;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 7%;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-bottom: 1px solid #eeeeee;
+
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  color: #222;
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 9px;
+
+  background: #e53935;
+  color: white;
+
+  font-size: 15px;
+}
+
+.logo strong {
+  color: #e53935;
+  font-weight: 900;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+
+  color: #444;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #e53935;
+}
+
+.signin-btn {
+  border: none;
+
+  background: #222;
+  color: white;
+
+  padding: 10px 20px;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+.signin-btn:hover {
+  background: #e53935;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 95px 20px 75px;
+
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+
+  padding: 8px 15px;
+
+  border-radius: 30px;
+
+  background: #fff0bd;
+  color: #8a6500;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  margin-bottom: 22px;
+}
+
+
+/* MAIN HERO HEADING */
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 70px);
+
+  line-height: 1.08;
+
+  font-weight: 900;
+
+  color: #181818;
+
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  color: #e53935;
+
+  font-weight: 900;
+}
+
+.hero-description {
+  max-width: 700px;
+
+  margin: 0 auto 35px;
+
+  color: #666;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   URL INPUT
+========================================= */
+
+.url-box {
+  max-width: 850px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  background: white;
+
+  padding: 9px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 14px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+}
+
+.input-wrapper {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding-left: 14px;
+}
+
+.link-icon {
+  font-size: 18px;
+}
+
+.input-wrapper input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  font-size: 15px;
+
+  color: #333;
+}
+
+.input-wrapper input::placeholder {
+  color: #999;
+}
+
+
+/* GENERATE BUTTON */
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+
+  padding: 15px 22px;
+
+  border-radius: 10px;
+
+  background: #ffd43b;
+  color: #222;
+
+  font-weight: 800;
+
+  transition: all 0.25s ease;
+}
+
+.generate-btn:hover {
+  background: #e53935;
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+.generate-btn:disabled {
+  opacity: 0.7;
+
+  cursor: wait;
+
+  transform: none;
+}
+
+.helper-text {
+  margin-top: 14px;
+
+  font-size: 13px;
+
+  color: #777;
+}
+
+
+/* =========================================
+   STUDY SECTION
+========================================= */
+
+.study-section {
+  width: min(1180px, 92%);
+
+  margin: 20px auto 90px;
+}
+
+.section-heading {
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+.small-title {
+  color: #e53935;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  margin-bottom: 8px;
+}
+
+.section-heading h2 {
+  font-size: 38px;
+
+  line-height: 1.2;
+
+  font-weight: 900;
+
+  color: #222;
+
+  margin-bottom: 10px;
+}
+
+.section-heading h2 span {
+  color: #e53935;
+
+  font-weight: 900;
+}
+
+.section-heading > p:last-child {
+  color: #777;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   STUDY TABS
+========================================= */
+
+.study-tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  margin-bottom: 30px;
+
+  background: white;
+
+  border: 1px solid #eadfcb;
+
+  border-radius: 14px;
+
+  overflow-x: auto;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.study-tabs::-webkit-scrollbar {
+  height: 5px;
+}
+
+.study-tabs::-webkit-scrollbar-thumb {
+  background: #ddd;
+
+  border-radius: 10px;
+}
+
+.study-tabs button {
+  flex-shrink: 0;
+
+  border: none;
+
+  background: #ffd43b;
+
+  color: #222;
+
+  padding: 11px 18px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  transition: all 0.25s ease;
+}
+
+.study-tabs button:hover {
+  background: #e53935;
+
+  color: white;
+
+  transform: translateY(-2px);
+}
+
+.study-tabs button.active {
+  background: #e53935;
+
+  color: white;
+
+  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.25);
+}
+
+
+/* =========================================
+   STUDY CONTENT
+========================================= */
+
+.study-content {
+  background: white;
+
+  border: 1px solid #eadfcb;
+
+  border-radius: 18px;
+
+  padding: 40px;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+
+  text-align: left;
+}
+
+
+/* =========================================
+   STUDY HEADER
+========================================= */
+
+.study-header {
+  padding-bottom: 28px;
+
+  margin-bottom: 35px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.study-header h2 {
+  color: #e53935;
+
+  font-size: 30px;
+
+  line-height: 1.3;
+
+  font-weight: 900;
+
+  margin-bottom: 15px;
+
+  text-align: left;
+}
+
+.study-overview {
+  color: #555;
+
+  font-size: 16px;
+
+  line-height: 1.9;
+
+  max-width: 950px;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   MATERIAL SECTION
+========================================= */
+
+.material-section {
+  text-align: left;
+}
+
+.material-section > h2 {
+  color: #e53935;
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+  margin-top: 35px;
+
+  margin-bottom: 16px;
+
+  padding-bottom: 8px;
+
+  border-bottom: 2px solid #ffe8e7;
+
+  text-align: left;
+}
+
+.material-section > h2:first-child {
+  margin-top: 0;
+}
+
+
+/* =========================================
+   DETAILED CONTENT
+========================================= */
+
+.text-card {
+  background: #fffdf7;
+
+  border-left: 5px solid #e53935;
+
+  border-radius: 10px;
+
+  padding: 24px 26px;
+
+  margin-bottom: 28px;
+
+  color: #333;
+
+  font-size: 16px;
+
+  line-height: 1.95;
+
+  text-align: left;
+}
+
+.text-card p {
+  white-space: pre-line;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   CONTENT CARDS
+========================================= */
+
+.content-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  margin-bottom: 25px;
+}
+
+.content-card {
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+
+  border-left: 4px solid #ffd43b;
+
+  border-radius: 10px;
+
+  padding: 19px 22px;
+
+  transition: all 0.2s ease;
+
+  text-align: left;
+}
+
+.content-card:hover {
+  border-left-color: #e53935;
+
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.06);
+
+  transform: translateX(2px);
+}
+
+.content-card p {
+  color: #444;
+
+  font-size: 15px;
+
+  line-height: 1.85;
+
+  text-align: left;
+}
+
+
+/* QUESTIONS */
+
+.content-card h3 {
+  color: #222;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  line-height: 1.6;
+
+  margin-bottom: 10px;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   QUESTION HEADER
+========================================= */
+
+.question-heading {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 25px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.question-heading h2 {
+  color: #e53935;
+
+  font-size: 27px;
+
+  font-weight: 900;
+
+  margin-bottom: 3px;
+}
+
+.question-heading p {
+  color: #777;
+
+  font-size: 14px;
+}
+
+.question-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.answer-btn,
+.pdf-btn {
+  border: none;
+
+  padding: 11px 17px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  transition: all 0.25s ease;
+}
+
+.answer-btn {
+  background: #ffd43b;
+
+  color: #222;
+}
+
+.pdf-btn {
+  background: #ffd43b;
+
+  color: #222;
+}
+
+.answer-btn:hover,
+.pdf-btn:hover {
+  background: #e53935;
+
+  color: white;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 15px rgba(229, 57, 53, 0.2);
+}
+
+
+/* =========================================
+   ANSWERS
+========================================= */
+
+.answer-box {
+  margin-top: 15px;
+
+  padding: 15px 17px;
+
+  background: #fff8dc;
+
+  border-left: 4px solid #e53935;
+
+  border-radius: 8px;
+
+  text-align: left;
+}
+
+.answer-box strong {
+  color: #e53935;
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-weight: 900;
+}
+
+.answer-box p {
+  color: #444;
+
+  font-style: italic;
+
+  line-height: 1.85;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   MCQ OPTIONS
+========================================= */
+
+.mcq-options {
+  margin-top: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.mcq-options p {
+  padding: 9px 12px;
+
+  background: #fafafa;
+
+  border-radius: 6px;
+
+  border: 1px solid #eeeeee;
+
+  color: #444;
+
+  font-size: 14px;
+}
+
+.mcq-options strong {
+  color: #e53935;
+
+  font-weight: 900;
+}
+
+
+/* =========================================
+   REVISION
+========================================= */
+
+.revision-card {
+  background: #fffdf7;
+
+  border: 1px solid #eadfcb;
+
+  border-left: 5px solid #e53935;
+
+  border-radius: 12px;
+
+  padding: 25px;
+
+  color: #444;
+
+  font-size: 16px;
+
+  line-height: 1.95;
+
+  white-space: pre-line;
+
+  text-align: left;
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+  width: min(1180px, 92%);
+
+  margin: 80px auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+}
+
+.feature-card {
+  background: white;
+
+  padding: 25px;
+
+  border: 1px solid #eeeeee;
+
+  border-radius: 14px;
+
+  text-align: left;
+
+  transition: 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #ffd43b;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+.feature-icon {
+  font-size: 27px;
+
+  margin-bottom: 14px;
+}
+
+.feature-card h3 {
+  color: #222;
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+  margin-bottom: 7px;
+}
+
+.feature-card p {
+  color: #777;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   HOW IT WORKS
+========================================= */
+
+.how-section {
+  width: min(1000px, 92%);
+
+  margin: 100px auto;
+
+  text-align: center;
+}
+
+.steps {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+
+  margin-top: 40px;
+}
+
+.step {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 14px;
+
+  border: 1px solid #eeeeee;
+
+  text-align: left;
+}
+
+.step-number {
+  color: #e53935;
+
+  font-size: 14px;
+
+  font-weight: 900;
+
+  margin-bottom: 10px;
+}
+
+.step h3 {
+  font-size: 20px;
+
+  font-weight: 900;
+
+  margin-bottom: 6px;
+}
+
+.step p {
+  color: #777;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  margin-top: 80px;
+
+  padding: 40px 7%;
+
+  background: #181818;
+
+  color: white;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 20px;
+
+  font-weight: 900;
+}
+
+footer p {
+  color: #aaa;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .study-content {
+    padding: 28px;
+  }
+
+  .question-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .question-actions {
+    justify-content: flex-start;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .nav-links a {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 65px;
+  }
+
+  .url-box {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .input-wrapper {
+    padding: 12px;
+  }
+
+  .generate-btn {
+    justify-content: center;
+  }
+
+  .study-section {
+    width: 94%;
+  }
+
+  .study-content {
+    padding: 20px;
+  }
+
+  .study-header h2 {
+    font-size: 24px;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    flex-direction: column;
+
+    gap: 10px;
+
+    text-align: center;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .study-tabs {
+    padding: 8px;
+  }
+
+  .study-tabs button {
+    padding: 9px 13px;
+
+    font-size: 12px;
+  }
+
+  .question-actions {
+    width: 100%;
+
+    justify-content: stretch;
+  }
+
+  .answer-btn,
+  .pdf-btn {
+    flex: 1;
+  }
+
+  .study-content {
+    padding: 17px;
+  }
+
+  .text-card {
+    padding: 18px;
+  }
+}
